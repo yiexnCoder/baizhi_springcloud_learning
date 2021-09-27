@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: USERS
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register-health-check: true
+        service-name: ${spring.application.name}
+        #Use ip address rather than hostname during registration ,host主机名采用使用ip的方式注册
+        prefer-ip-address: true
+#        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}
+
+#修改ribbon的负载均衡策略，不使用轮训策略，改用随机策略
+ORDERS:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

@@ -1,0 +1,15 @@
+server:
+  port: 8082
+
+
+spring:
+  application:
+    name: CONSULCLIENT
+  cloud:
+    consul:
+      host: 127.0.0.1 #注册consul服务的主机
+      port: 8500  #注册consul服务的端口号
+      discovery:
+        service-name: ${spring.application.name} #指定注册的服务名称 默认就是应用名
+        register-health-check: true  #false,关闭consu了服务的健康检查[不推荐]
+
